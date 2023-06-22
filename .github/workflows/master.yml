@@ -23,4 +23,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: BASAPP
-        path: ./bin/Release/BASAPP.exe
+        path: ./BAS APP/bin/Release/BASAPP.exe
