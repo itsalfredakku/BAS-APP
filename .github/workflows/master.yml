@@ -1,0 +1,26 @@
+name: Build and Upload Artifact
+
+on:
+  push:
+    branches:
+      - master  # Change to the appropriate branch if needed
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.0.2
+
+    - name: Build
+      run: msbuild /p:Configuration=Release
+
+    - name: Publish Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: BASAPP
+        path: ./bin/Release/BASAPP.exe
