@@ -7,34 +7,20 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 4.7.2
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Build
-      run: dotnet build --configuration Release
+      run: msbuild /p:Configuration=Release
 
     - name: Publish Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: MyApp
-        path: ./path/to/your/compiled/executable
-
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: v1.0.0  # Set the desired tag name for the release
-        release_name: Beta 1.0.0  # Set the desired release name
-        body: Release notes for version 1.0.0  # Add release notes
-        draft: false
-        prerelease: false
+        name: BASAPP
+        path: ./bin/Release/BASAPP.exe
