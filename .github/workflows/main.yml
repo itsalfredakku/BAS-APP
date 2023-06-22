@@ -1,0 +1,40 @@
+name: Build and Upload Artifact
+
+on:
+  push:
+    branches:
+      - main  # Change to the appropriate branch if needed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 4.7.2
+
+    - name: Build
+      run: dotnet build --configuration Release
+
+    - name: Publish Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: MyApp
+        path: ./path/to/your/compiled/executable
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v1.0.0  # Set the desired tag name for the release
+        release_name: Beta 1.0.0  # Set the desired release name
+        body: Release notes for version 1.0.0  # Add release notes
+        draft: false
+        prerelease: false
