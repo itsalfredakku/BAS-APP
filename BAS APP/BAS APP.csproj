@@ -7,7 +7,7 @@
     <ProjectGuid>{1E75B456-551B-44E0-A7CA-7D23F2238B03}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>BAS_APP</RootNamespace>
-    <AssemblyName>BAS APP</AssemblyName>
+    <AssemblyName>BASAPP</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
